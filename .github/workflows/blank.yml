@@ -17,6 +17,7 @@ jobs:
   build:
     env:
        db_uri: postgresql://postgres:postgres@localhost:5432/postgres
+       db_name: ${{secrets.NAME}}
     # An job is a set of steps with a specific order
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -26,4 +27,7 @@ jobs:
       - name: "Mostrar mensaje"
         run: echo "¡Hola, mundo! Este es un workflow de GitHub Actions."
       - name: "Ver Variables de entorno"
-        run: echo "esto es una variable de entorno ${{env.db_uri}}"
+        run: |
+          echo "db_uri: $db_uri"
+          echo "db_name: ${{env.db_name}}"
+        
